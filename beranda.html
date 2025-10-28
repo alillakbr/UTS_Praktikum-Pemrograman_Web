@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Mahasiswa</title>
+  <link rel="stylesheet" href="gaya.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Form Input Mahasiswa</h1>
+      <form id="formMahasiswa" novalidate>
+        <div class="grid-2">
+          <div>
+            <label for="nama">Nama</label>
+            <input id="nama" name="nama" type="text" placeholder="Nama lengkap" required />
+          </div>
+          <div>
+            <label for="nim">NIM</label>
+            <input id="nim" name="nim" type="text" placeholder="Contoh: 210123456" required />
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:12px">
+          <div>
+            <label for="semester">Semester</label>
+            <input id="semester" name="semester" type="number" placeholder="Contoh: 4" min="1" />
+          </div>
+          <div>
+            <label for="prodi">Program Studi</label>
+            <input id="prodi" name="prodi" type="text" placeholder="Contoh: Teknik Informatika" />
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="email@domain.com" />
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">Kirim Data</button>
+          <button class="btn btn-ghost" type="button" id="resetBtn">Reset</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="right">
+      <div class="card info">
+        <h3>Informasi Pengiriman</h3>
+        <ul>
+          <li>• Data ditampilkan di console.</li>
+          <li>• Data disimpan di Array.</li>
+          <li>• Jumlah data di-update otomatis.</li>
+          <li>• Form akan dikosongkan setelah kirim.</li>
+        </ul>
+        <small>Jumlah data: <span id="jumlah" class="count">0</span></small>
+      </div>
+
+      <div class="card">
+        <h3>Daftar Mahasiswa</h3>
+        <table id="tabelMahasiswa">
+          <thead>
+            <tr><th style="width:48px">No.</th><th>Nama</th><th>Info</th></tr>
+          </thead>
+          <tbody id="tbodyMahasiswa">
+            <tr id="emptyRow"><td colspan="3" class="empty">Belum ada data.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="aplikasi.js"></script>
+</body>
+</html>
