@@ -1,4 +1,3 @@
-// Kode JS sederhana untuk menangani form, localStorage, dan update tabel
 const KEY = 'data_mahasiswa';
 
 function ambilData() {
@@ -14,6 +13,15 @@ function simpanSemua(arr) {
   try {
     localStorage.setItem(KEY, JSON.stringify(arr));
   } catch {}
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function tambahBarisTabel(idx, mhs) {
@@ -32,15 +40,6 @@ function tambahBarisTabel(idx, mhs) {
       <div class="text-xs" style="color:#64748b">Email: ${escapeHtml(mhs.email)}</div>
     </td>`;
   tbody.appendChild(tr);
-}
-
-function escapeHtml(str) {
-  return String(str || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
 }
 
 function updateJumlah(n) {
@@ -68,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
       const mhs = {
         nama: form.nama.value.trim(),
         nim: form.nim.value.trim(),
@@ -76,10 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
         email: form.email.value.trim()
       };
 
-      // Validasi sederhana
-      if (!mhs.nama) { alert('Nama wajib diisi'); return; }
-      if (!/^\d+$/.test(mhs.nim)) { alert('NIM harus berupa angka'); return; }
-      if (mhs.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mhs.email)) { alert('Format email salah'); return; }
+      if (!mhs.nama) {
+        alert('Nama wajib diisi');
+        return;
+      }
+      if (!/^\d+$/.test(mhs.nim)) {
+        alert('NIM harus berupa angka');
+        return;
+      }
+      if (mhs.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mhs.email)) {
+        alert('Format email salah');
+        return;
+      }
 
       console.log('Mengirim data mahasiswa:', mhs);
 
